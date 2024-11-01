@@ -1,0 +1,183 @@
+/* Glavni kontejner u formatu A4 stranice */
+.A4 {
+    width: 29.7cm;
+    height: 21cm;
+    margin: auto;
+    background: white;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    page-break-after: always;
+}
+
+/* Prilagođavanje štampanja za A4 format */
+@media print {
+    .A4 {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 20mm;
+        page-break-after: always; /* Automatically breaks after each page */
+        box-shadow: none;
+        overflow: visible; /* Ensures content flows properly when printing */
+    }
+}
+
+/* Naslov sa prikazom meseca i godine */
+.div-title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.monthName {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 30px;
+    font-size: 32px;
+}
+
+.yearNumber {
+    text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 30px;
+    font-size: 32px;
+}
+
+/* Kontejner za kalendar koji ispunjava sav prostor */
+.divCalendarBody {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* Stilizacija tabele kalendara */
+.calendar-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Omogućava ravnomerno raspoređene ćelije */
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Stilizacija zaglavlja za dane u nedelji */
+.calendar-table th {
+    border: solid #ddd 1px;
+    color: black;
+    padding: 0;
+    font-weight: bold;
+    font-size: 16px;
+    height: 40px;
+}
+
+/* Stilizacija ćelija u tabeli kalendara */
+.calendar-table td {
+    border: 1px solid #ddd;
+    padding: 0;
+    height: calc((100% - 40px) / 6); /* Dinamički računata visina ćelija */
+    font-size: 14px;
+    text-align: left; /* Brojevi dana se poravnavaju levo */
+    vertical-align: top; /* Brojevi dana se pozicioniraju na vrh */
+    padding-top: 5px; /* Razmak između vrha ćelije i broja */
+    padding-left: 5px; /* Razmak između leve ivice ćelije i broja */
+}
+
+/* Bojenje vikenda */
+.calendar-table td:nth-child(6), .calendar-table td:nth-child(7) {
+    background-color: #f2f2f2;
+    color: #666;
+}
+
+/* Hover efekat za sve ćelije */
+.calendar-table td:hover {
+    background-color: #e2e8f0;
+    cursor: pointer;
+}
+
+/* Stilizacija za trenutni dan */
+.calendar-table .current-day {
+    background-color: #ffeb3b;
+    color: #333;
+    font-weight: bold;
+}
+.button-64 {
+    align-items: center;
+    background-image: linear-gradient(145deg, #4CAF50, #3B8D3A); /* Zelena gradijent */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(76, 175, 80, 0.2), 
+                -5px -5px 15px rgba(255, 255, 255, 0.7);
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    min-width: 150px; /* Povećano minimalno širina */
+    padding: 12px 20px; /* Povećano unutrašnje razmaku */
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Glatka animacija */
+}
+
+.button-64:hover {
+    background-image: linear-gradient(145deg, #3B8D3A, #4CAF50); /* Tamnija zelena gradijent prilikom prelaska */
+    transform: translateY(-2px); /* Blago pomeranje nagore */
+    box-shadow: 3px 3px 10px rgba(76, 175, 80, 0.3), 
+                -3px -3px 10px rgba(255, 255, 255, 0.8);
+}
+
+.button-64:active {
+    transform: translateY(1px); /* Blago pomeranje nadole prilikom klika */
+    box-shadow: inset 2px 2px 5px rgba(76, 175, 80, 0.5), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.3);
+}
+.input-month {
+    border: none;
+    border-radius: 8px; /* Zaobljeni uglovi */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1),
+                -2px -2px 5px rgba(255, 255, 255, 0.7);
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    padding: 10px 15px; /* Unutrašnji razmak */
+    margin-right: 10px; /* Razmak između input polja */
+    width: 100px; /* Širina input polja */
+    transition: all 0.3s ease; /* Glatka animacija */
+}
+
+.input-month:focus {
+    outline: none; /* Uklanjanje default okvira */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Zeleno svetlo oko polja kada je aktivno */
+    border: 1px solid #4CAF50; /* Zeleni okvir kada je fokusirano */
+}
+
+.button-generate {
+    background-color: #4CAF50; /* Zeleno dugme */
+    color: white; /* Bele slova */
+    border: none; /* Bez okvira */
+    border-radius: 8px; /* Zaobljeni uglovi */
+    padding: 10px 15px; /* Unutrašnji razmak */
+    font-size: 16px; /* Veličina fonta */
+    cursor: pointer; /* Promena kursora pri prelaženju miša */
+    transition: background-color 0.3s ease; /* Glatka animacija */
+}
+
+.button-generate:hover {
+    background-color: #45a049; /* Tamnija zelena pri hover-u */
+}
+
